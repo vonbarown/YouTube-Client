@@ -51,7 +51,9 @@ class HomePage extends Component {
                 </form>
 
                 {
-                    results.length === 0 ? <div>No Search Results Yet!, Please submit a search above</div> : <Video results={this.state.results} />
+                    results.length === 0 ? <div>No Search Results Yet!, Please submit a search above</div> : results.map(el => {
+                        return <Video videoId={'Gg7C4oM8fCQ'} />
+                    })
                 }
             </div>
         )
