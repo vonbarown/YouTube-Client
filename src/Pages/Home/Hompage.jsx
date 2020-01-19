@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 
 class HomPage extends Component {
     constructor() {
+        super()
         this.state = {
-            searchInput: ''
+            search: ''
         }
     }
 
@@ -18,10 +19,14 @@ class HomPage extends Component {
 
 
     render() {
+        console.log(this.state);
+
         return (
-            <Div className='homepage'>
-                hola
-            </Div>
+            <div className='homepage'>
+                <form>
+                    <input type="text" name='search' placeholder='search' onChange={this.handleInput} />
+                </form>
+            </div>
         )
     }
 }
