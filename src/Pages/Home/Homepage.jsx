@@ -4,7 +4,8 @@ class HomePage extends Component {
     constructor() {
         super()
         this.state = {
-            search: ''
+            search: '',
+            results: []
         }
     }
 
