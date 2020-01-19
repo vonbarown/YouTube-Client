@@ -7,7 +7,6 @@ export const NavBar = (props) => {
             <h3>YouTube</h3>
             <a href="/">Home</a> {'  '}
             <a href="/about">About</a>
-            {props.children}
         </div>
     )
 }

@@ -35,6 +35,9 @@ class HomePage extends Component {
     }
 
 
+    renderVideos() {
+        return this.state.results.map(el => <Video videoId={el.videoId} />)
+    }
 
     render() {
         console.log(this.state);
@@ -48,7 +51,7 @@ class HomePage extends Component {
                 </form>
 
                 {
-                    results.length === 0 ? <div>No Search Results Yet!, Please submit a search above</div> : <Video />
+                    results.length === 0 ? <div>No Search Results Yet!, Please submit a search above</div> : <Video results={this.state.results} />
                 }
             </div>
         )
