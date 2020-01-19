@@ -1,10 +1,31 @@
 import React from 'react'
 
-export const VideoPage = () => {
-    return (
+class VideoPage extends React.Component {
+    constructor() {
+        super()
 
-        <div>
-            dfv
-        </div>
-    )
+        this.state = {
+            videoId: {}
+        }
+
+    }
+
+    componentDidMount() {
+        this.setState({
+            videoId: this.props.match.params.id
+        })
+    }
+
+    render() {
+        console.log(this.props.match.params.id);
+
+
+        return (
+            <div>
+                hello
+            </div>
+        )
+    }
 }
+
+export default VideoPage

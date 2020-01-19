@@ -15,4 +15,15 @@
 .navbar {
   display: flex;
   gap: 20px;
+  background-color: red;
+  align-items: flex-start;
+  margin-bottom: 50px;
+}
+
+.navItems {
+  margin-top: 18px;
+}
+
+p {
+  color: black;
 }

@@ -12,7 +12,6 @@ function App() {
       <NavBar />
       <Switch>
         <Route exact path='/' component={HomePage} />
-        <Route path='/video' component={VideoPage} />
       </Switch>
     </div>
   );
