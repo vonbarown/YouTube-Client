@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class HomPage extends Component {
+class HomePage extends Component {
     constructor() {
         super()
         this.state = {
@@ -17,17 +17,21 @@ class HomPage extends Component {
         });
     };
 
+    handleClick = () => {
+        console.log('yolo');
+    }
 
     render() {
         console.log(this.state);
 
         return (
             <div className='homepage'>
-                <form>
+                <form onSubmit={e => e.preventDefault()}>
                     <input type="text" name='search' placeholder='search' onChange={this.handleInput} />
+                    <input type="submit" value='search' onClick={this.handleClick} />
                 </form>
             </div>
         )
     }
 }
-export default HomPage
+export default HomePage

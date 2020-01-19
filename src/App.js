@@ -1,14 +1,14 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom'
+import Landing from './Components/Landing'
+import { NavBar } from './Components/NavBar'
 import './App.css';
-import HomPage from './Pages/Home/Hompage';
 
 function App() {
   return (
     <div className="App">
-      <Switch>
-        <Route to='/' component={HomPage} />
-      </Switch>
+      <NavBar>
+        <Landing />
+      </NavBar>
     </div>
   );
 }
