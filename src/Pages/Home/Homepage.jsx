@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { apiKey } from '../../secrets'
+import Video from '../../Components/Video'
 import axios from 'axios'
 
 class HomePage extends Component {
@@ -21,7 +22,7 @@ class HomePage extends Component {
 
     searchVideo = async () => {
         try {
-            const { data: { items } } = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${this.state.search}&key=${apiKey}`)
+            const { data: { items } } = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=8&q=${this.state.search}&key=${apiKey}`)
 
             this.setState({
                 results: items
@@ -47,7 +48,7 @@ class HomePage extends Component {
                 </form>
 
                 {
-                    results.length === 0 ? <div>No Search Results Yet!, Please submit a search above</div> : null
+                    results.length === 0 ? <div>No Search Results Yet!, Please submit a search above</div> : <Video />
                 }
             </div>
         )
