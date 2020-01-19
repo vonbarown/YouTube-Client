@@ -1,15 +1,23 @@
 import React, { Component } from 'react'
 import { apiKey } from '../../secrets'
-import Video from '../../Components/Video'
+import { Redirect, Link } from 'react-router-dom'
+// import VideoPlayer from '../../Components/Video'
+import { VideoPage } from '../VideoPage/VideoPage'
 import axios from 'axios'
+
+import './HomePage.css'
 
 class HomePage extends Component {
     constructor() {
         super()
         this.state = {
             search: '',
-            results: []
+            results: [
+                // "zvPvqUY2Bt4", "Gg7C4oM8fCQ", "RyvAUshBI6I", "t4IYEXO7ipc", "m_gX31bQTto", "rkmCLxqVdIk", "5hbzEFLTjHY"
+            ],
+            clicked: false
         }
+        this.clicked = this.clicked.bind(this);
     }
 
     handleInput = e => {
@@ -22,7 +30,7 @@ class HomePage extends Component {
 
     searchVideo = async () => {
         try {
-            const { data: { items } } = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=8&q=${this.state.search}&key=${apiKey}`)
+            const { data: { items } } = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=2&q=${this.state.search}&key=${apiKey}`)
 
             this.setState({
                 results: items
@@ -33,15 +41,35 @@ class HomePage extends Component {
 
         }
     }
-
-
-    renderVideos() {
-        return this.state.results.map(el => <Video videoId={el.videoId} />)
+    clicked() {
+        this.setState({
+            clicked: true
+        })
     }
+
 
     render() {
         console.log(this.state);
-        const { results } = this.state
+        const { results, clicked } = this.state
+
+        const Redirect = () => {
+            if (results.length === 0) {
+                return <div className='nullResults'>No Search Results Yet!, Please submit a search above</div>
+            } else if (clicked) {
+                return <VideoPage />
+            } else {
+                return (
+                    results.map(el => {
+                        return (
+                            <div className='thumbnail' id={el.id.videoId} onClick={this.clicked}>
+                                <img src={el.snippet.thumbnails.medium.url} alt="thumbnail" />
+                                <p>{el.snippet.title}</p>
+                            </div>
+                        )
+                    })
+                )
+            }
+        }
 
         return (
             <div className='homepage'>
@@ -49,12 +77,9 @@ class HomePage extends Component {
                     <input type="text" name='search' placeholder='search' onChange={this.handleInput} />
                     <input type="submit" value='search' onClick={this.searchVideo} />
                 </form>
-
-                {
-                    results.length === 0 ? <div>No Search Results Yet!, Please submit a search above</div> : results.map(el => {
-                        return <Video videoId={'Gg7C4oM8fCQ'} />
-                    })
-                }
+                <div className='display'>
+                    <Redirect />
+                </div>
             </div>
         )
     }

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import YouTube from 'react-youtube'
 
-class Video extends Component {
+class VideoPlayer extends Component {
 
 
     render() {
         const opts = {
-            height: '390',
-            width: '640',
+            height: '200',
+            width: '440',
             playerVars: {
                 autoplay: 1
             }
@@ -25,4 +25,4 @@ class Video extends Component {
 
 }
 
-export default Video
+export default VideoPlayer

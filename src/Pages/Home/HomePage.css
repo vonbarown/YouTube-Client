@@ -1,0 +1,18 @@
+.display {
+  display: grid;
+  grid-template-columns: 500px 500px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.navbar {
+  display: flex;
+  gap: 20px;
+}

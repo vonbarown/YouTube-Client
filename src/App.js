@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
 import HomePage from './Pages/Home/Homepage'
+import { VideoPage } from './Pages/VideoPage/VideoPage'
 // import { NavBar } from './Components/NavBar'
 import './App.css';
 import { NavBar } from './Components/NavBar';
@@ -10,7 +11,8 @@ function App() {
     <div className="App">
       <NavBar />
       <Switch>
-        <Route to='/' component={HomePage} />
+        <Route exact path='/' component={HomePage} />
+        <Route path='/video' component={VideoPage} />
       </Switch>
     </div>
   );
