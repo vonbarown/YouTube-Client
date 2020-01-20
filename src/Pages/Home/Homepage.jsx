@@ -25,7 +25,7 @@ class HomePage extends Component {
 
     searchVideo = async () => {
         try {
-            const { data: { items } } = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${this.state.search}&key=${apiKey}`)
+            const { data: { items } } = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=8&q=${this.state.search}&key=${apiKey}`)
 
             this.setState({
                 results: items
@@ -45,24 +45,27 @@ class HomePage extends Component {
             <div className='homepage' >
 
                 <form onSubmit={e => e.preventDefault()} className='homepageForm'>
-                    <input type="text" name='search' placeholder='search' onChange={this.handleInput} className='inputBar' />
+                    <input type="text" name='search' placeholder='   search...' onChange={this.handleInput} className='inputBar' />
                     <input type="submit" value='search' onClick={this.searchVideo} className='searchButton' />
                 </form>
                 {results.length === 0 ? <div className='nullResults'>No Search Results Yet!, Please submit a search above</div> :
-                    this.state.results ? results.map(el => {
-                        return (
-                            <div className='display'>
-                                {
+                    (<div className='display'>
+                        {
+                            this.state.results ? results.map(el => {
+                                return (
+
                                     <div className='thumbnail'>
                                         <Link id={el.id.videoId} to={`/video/${el.id.videoId}`} params={{ testValue: "hello" }} className='thumbnail'>
                                             <img src={el.snippet.thumbnails.medium.url} alt="thumbnail" />
-                                            <d>{el.snippet.title}</d>
+                                            <p>{el.snippet.title}</p>
                                         </Link>
                                     </div>
-                                }
-                            </div>
-                        )
-                    }) : null}
+
+                                )
+                            }) : null
+                        }
+                    </div>
+                    )}
             </div>
         )
     }
