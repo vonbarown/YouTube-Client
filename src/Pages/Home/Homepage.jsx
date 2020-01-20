@@ -54,7 +54,7 @@ class HomePage extends Component {
                             <div className='display'>
                                 {
                                     <div className='thumbnail'>
-                                        <Link id={el.id.videoId} to={`/video/${el.id.videoId}`} className='thumbnail'>
+                                        <Link id={el.id.videoId} to={`/video/${el.id.videoId}`} params={{ testValue: "hello" }} className='thumbnail'>
                                             <img src={el.snippet.thumbnails.medium.url} alt="thumbnail" />
                                             <d>{el.snippet.title}</d>
                                         </Link>
