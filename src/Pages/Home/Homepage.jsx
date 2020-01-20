@@ -1,23 +1,18 @@
 import React, { Component } from 'react'
 import { apiKey } from '../../secrets'
-import { Switch, Link, Route } from 'react-router-dom'
-// import VideoPlayer from '../../Components/Video'
-import VideoPage from '../VideoPage/VideoPage'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
-
 import './HomePage.css'
-import VideoPlayer from '../../Components/Video'
 
 class HomePage extends Component {
     constructor() {
         super()
         this.state = {
             search: '',
-            results: null,
+            results: [],
             clicked: false,
             clickedVideo: ''
         }
-        // this.clicked = this.clicked.bind(this);
     }
 
     handleInput = e => {
@@ -52,25 +47,26 @@ class HomePage extends Component {
 
         return (
             <div className='homepage'>
-                <Switch>
-                    <Route path='/' />
-                    <Route path='/video/:id' component={VideoPage} />
-                </Switch>
+
                 <form onSubmit={e => e.preventDefault()}>
                     <input type="text" name='search' placeholder='search' onChange={this.handleInput} />
                     <input type="submit" value='search' onClick={this.searchVideo} />
                 </form>
-                {results ? <div className='nullResults'>No Search Results Yet!, Please submit a search above</div> : null}
-                {this.state.results ? results.map(el => {
-                    return (
-                        <Link id={el.id.videoId} to={`/video/${el.id.videoId}`}>
-                            <div className='thumbnail' id={el.id.videoId} >
-                                <img src={el.snippet.thumbnails.medium.url} alt="thumbnail" />
-                                <d>{el.snippet.title}</d>
+                {results.length === 0 ? <div className='nullResults'>No Search Results Yet!, Please submit a search above</div> :
+                    this.state.results ? results.map(el => {
+                        return (
+                            <div className='display'>
+                                {
+                                    <div className='thumbnail'>
+                                        <Link id={el.id.videoId} to={`/video/${el.id.videoId}`} className='thumbnail'>
+                                            <img src={el.snippet.thumbnails.medium.url} alt="thumbnail" />
+                                            <d>{el.snippet.title}</d>
+                                        </Link>
+                                    </div>
+                                }
                             </div>
-                        </Link>
-                    )
-                }) : null}
+                        )
+                    }) : null}
             </div>
         )
     }
