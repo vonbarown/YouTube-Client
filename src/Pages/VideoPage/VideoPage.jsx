@@ -59,7 +59,7 @@ class VideoPage extends React.Component {
                                 return (
                                     <li>
                                         <p className='username'>{el.name}</p>
-                                        <p>{el.comment}</p>
+                                        <p className='comment'>{el.comment}</p>
                                     </li>
                                 )
                             })
