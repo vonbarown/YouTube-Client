@@ -6,8 +6,8 @@ class VideoPlayer extends Component {
 
     render() {
         const opts = {
-            height: '200',
-            width: '440',
+            height: '390',
+            width: '640',
             playerVars: {
                 autoplay: 1
             }

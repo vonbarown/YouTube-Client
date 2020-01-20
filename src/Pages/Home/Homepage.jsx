@@ -39,11 +39,7 @@ class HomePage extends Component {
 
 
     render() {
-        console.log("state", this.state);
-        console.log('param', window.location.href);
         const { results } = this.state
-
-
 
         return (
             <div className='homepage'>

@@ -1,26 +1,13 @@
 import React from 'react'
+import VideoPlayer from '../../Components/Video';
 
 class VideoPage extends React.Component {
-    constructor() {
-        super()
-
-        this.state = {
-            videoId: {}
-        }
-
-    }
-
-    componentDidMount() {
-        this.setState({
-            videoId: this.props.match.params.id
-        })
-    }
 
     render() {
         console.log(this.props.match.params.id);
         return (
             <div>
-
+                <VideoPlayer videoId={this.props.match.params.id} />
             </div>
         )
     }
