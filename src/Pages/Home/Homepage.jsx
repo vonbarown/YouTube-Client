@@ -42,11 +42,11 @@ class HomePage extends Component {
         const { results } = this.state
 
         return (
-            <div className='homepage'>
+            <div className='homepage' >
 
-                <form onSubmit={e => e.preventDefault()}>
-                    <input type="text" name='search' placeholder='search' onChange={this.handleInput} />
-                    <input type="submit" value='search' onClick={this.searchVideo} />
+                <form onSubmit={e => e.preventDefault()} className='homepageForm'>
+                    <input type="text" name='search' placeholder='search' onChange={this.handleInput} className='inputBar' />
+                    <input type="submit" value='search' onClick={this.searchVideo} className='searchButton' />
                 </form>
                 {results.length === 0 ? <div className='nullResults'>No Search Results Yet!, Please submit a search above</div> :
                     this.state.results ? results.map(el => {

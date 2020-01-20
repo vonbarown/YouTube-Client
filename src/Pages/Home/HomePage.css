@@ -10,6 +10,21 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+  align-items: center;
+}
+
+.searchButton {
+  width: 120px;
+  height: 41.5px;
+  background-color: red;
+  border-radius: 5px;
+  margin-top: -2px;
+  font-size: 23px;
+  color: white;
+}
+.homepageForm {
+  display: flex;
+  justify-content: center;
 }
 
 .navbar {
@@ -30,4 +45,13 @@ p {
 .thumbnail {
   display: flex;
   flex-direction: column;
+}
+
+.nullResults {
+  display: flex;
+  width: 773px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  background-color: #d6d8d9;
 }

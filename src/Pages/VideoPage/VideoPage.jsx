@@ -42,11 +42,11 @@ class VideoPage extends React.Component {
                 <form className='videoForm' onSubmit={this.handleSubmit}>
                     <div className='inputs'>
                         <label htmlFor="name">Name</label> <br />
-                        <input name='name' type="text" placeholder='name' onChange={this.handleInput} required />
+                        <input name='name' type="text" placeholder='name' onChange={this.handleInput} required className='inputBar' />
                     </div>
                     <div className='inputs'>
                         <label htmlFor="comment">Comment</label> <br />
-                        <input name='comment' type="text" placeholder='...' onChange={this.handleInput} required />
+                        <input name='comment' type="text" placeholder='...' onChange={this.handleInput} required className='inputBar' />
                     </div>
 
                     <button>Submit</button>
