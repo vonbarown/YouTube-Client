@@ -12,6 +12,11 @@ class VideoPage extends React.Component {
             comment: ''
         }
     }
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.videInfo.length !== prevState.videInfo) {
+            this.setStorage()
+        }
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -22,7 +27,12 @@ class VideoPage extends React.Component {
             name: '',
             comment: ''
         });
+
     };
+
+    setStorage() {
+        localStorage.setItem('videInfo', JSON.stringify(this.state.videInfo))
+    }
 
     handleInput = e => {
         const value = e.target.value;
@@ -42,11 +52,11 @@ class VideoPage extends React.Component {
                 <form className='videoForm' onSubmit={this.handleSubmit}>
                     <div className='inputs'>
                         <label htmlFor="name">Name</label> <br />
-                        <input name='name' type="text" placeholder='name' onChange={this.handleInput} required className='inputBar' />
+                        <input name='name' type="text" placeholder=' Name..' onChange={this.handleInput} required className='inputBar' />
                     </div>
                     <div className='inputs'>
                         <label htmlFor="comment">Comment</label> <br />
-                        <input name='comment' type="text" placeholder='...' onChange={this.handleInput} required className='inputBar' />
+                        <input name='comment' type="text" placeholder='  ...' onChange={this.handleInput} required className='inputBar' />
                     </div>
 
                     <button>Submit</button>
@@ -55,7 +65,7 @@ class VideoPage extends React.Component {
                 {
                     <ul>
                         {
-                            this.state.videInfo.map(el => {
+                            JSON.parse(localStorage.getItem('videInfo')).map(el => {
                                 return (
                                     <li>
                                         <p className='username'>{el.name}</p>
