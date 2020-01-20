@@ -5,6 +5,7 @@ import HomePage from './Pages/Home/Homepage'
 import './App.css';
 import { NavBar } from './Components/NavBar';
 import VideoPage from './Pages/VideoPage/VideoPage'
+import About from './Pages/About'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
 
       <Switch>
         <Route path='/video/:id' component={VideoPage} />
+        <Route path='/about' component={About} />
         <Route path='/' component={HomePage} />
       </Switch>
     </div>
