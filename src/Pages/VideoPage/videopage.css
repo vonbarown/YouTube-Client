@@ -42,13 +42,18 @@ button {
 }
 ul {
   margin-left: -650px;
+  text-align: left;
 }
 
 li {
   list-style: none;
+  padding-left: 45%;
 }
 .comment {
   margin-left: -2px;
+}
+.comments {
+  display: inline;
 }
 
 .username {

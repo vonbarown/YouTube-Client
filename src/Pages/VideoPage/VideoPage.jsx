@@ -12,10 +12,13 @@ class VideoPage extends React.Component {
             comment: ''
         }
     }
-    componentDidUpdate(prevProps, prevState) {
-        if (this.state.videInfo.length !== prevState.videInfo) {
-            this.setStorage()
-        }
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (this.state.videInfo.length !== prevState.videInfo) {
+    //         this.setStorage()
+    //     }
+    // }
+    componentDidMount() {
+        this.setStorage()
     }
 
     handleSubmit = (e) => {
@@ -44,12 +47,13 @@ class VideoPage extends React.Component {
 
     render() {
         console.log(this.state);
+
         return (
             <div className='videoPage'>
                 <div className='videoPlayer'>
                     <VideoPlayer videoId={this.props.match.params.id} />
                 </div>
-                <form className='videoForm' onSubmit={this.handleSubmit}>
+                <form className='videoForm' onSubmit={this.handleSubmit} required>
                     <div className='inputs'>
                         <label htmlFor="name">Name</label> <br />
                         <input name='name' type="text" placeholder=' Name..' onChange={this.handleInput} required className='inputBar' />
@@ -63,18 +67,20 @@ class VideoPage extends React.Component {
                 </form>
 
                 {
-                    <ul>
-                        {
-                            JSON.parse(localStorage.getItem('videInfo')).map(el => {
-                                return (
-                                    <li>
-                                        <p className='username'>{el.name}</p>
-                                        <p className='comment'>{el.comment}</p>
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
+                    <div className='comments'>
+                        <ul>
+                            {
+                                this.state.videInfo.map(el => {
+                                    return (
+                                        <li>
+                                            <p className='username'>{el.name}</p>
+                                            <p className='comment'>{el.comment}</p>
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
 
                 }
             </div>
