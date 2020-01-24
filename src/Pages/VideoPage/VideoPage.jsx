@@ -27,8 +27,8 @@ class VideoPage extends React.Component {
         const newItem = { name, comment };
         this.setState({
             videInfo: [...videInfo, newItem],
-            name: '',
-            comment: ''
+            // name: '',
+            // comment: ''
         });
 
     };
