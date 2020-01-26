@@ -1,91 +1,57 @@
-import React from 'react'
+import React, { useState } from 'react'
 import VideoPlayer from '../../Components/Video';
 import './videopage.css'
 
-class VideoPage extends React.Component {
+const VideoPage = (props) => {
 
-    constructor() {
-        super()
-        this.state = {
-            videInfo: [],
-            name: '',
-            comment: ''
-        }
-    }
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (this.state.videInfo.length !== prevState.videInfo) {
-    //         this.setStorage()
-    //     }
-    // }
-    componentDidMount() {
-        this.setStorage()
-    }
+    const [name, setName] = useState('')
+    const [comment, setComment] = useState('')
+    const [videoInfo, setVideoInfo] = useState([])
 
-    handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        let { videInfo, name, comment } = this.state;
         const newItem = { name, comment };
-        this.setState({
-            videInfo: [...videInfo, newItem],
-            // name: '',
-            // comment: ''
-        });
-
+        setVideoInfo([...videoInfo, newItem])
     };
 
-    setStorage() {
-        localStorage.setItem('videInfo', JSON.stringify(this.state.videInfo))
-    }
 
-    handleInput = e => {
-        const value = e.target.value;
-        this.setState({
-            ...this.prevState,
-            [e.target.name]: value
-        });
-    };
-
-    render() {
-        console.log(this.state);
-
-        return (
-            <div className='videoPage'>
-                <div className='videoPlayer'>
-                    <VideoPlayer videoId={this.props.match.params.id} />
-                </div>
-                <form className='videoForm' onSubmit={this.handleSubmit} required>
-                    <div className='inputs'>
-                        <label htmlFor="name">Name</label> <br />
-                        <input name='name' type="text" placeholder=' Name..' onChange={this.handleInput} required className='inputBar' value={this.state.name} />
-                    </div>
-                    <div className='inputs'>
-                        <label htmlFor="comment">Comment</label> <br />
-                        <input name='comment' type="text" placeholder='  ...' onChange={this.handleInput} required className='inputBar' value={this.state.comment}/>
-                    </div>
-
-                    <button>Submit</button>
-                </form>
-
-                {
-                    <div className='comments'>
-                        <ul>
-                            {
-                                this.state.videInfo.map(el => {
-                                    return (
-                                        <li>
-                                            <p className='username'>{el.name}</p>
-                                            <p className='comment'>{el.comment}</p>
-                                        </li>
-                                    )
-                                })
-                            }
-                        </ul>
-                    </div>
-
-                }
+    return (
+        <div className='videoPage'>
+            <div className='videoPlayer'>
+                <VideoPlayer videoId={props.match.params.id} />
             </div>
-        )
-    }
+            <form className='videoForm' onSubmit={handleSubmit} required>
+                <div className='inputs'>
+                    <label htmlFor="name">Name</label> <br />
+                    <input name='name' type="text" placeholder=' Name..' onChange={e => setName(e.target.value)} required className='inputBar' value={name} />
+                </div>
+                <div className='inputs'>
+                    <label htmlFor="comment">Comment</label> <br />
+                    <input name='comment' type="text" placeholder='  ...' onChange={e => setComment(e.target.value)} required className='inputBar' value={comment} />
+                </div>
+
+                <button>Submit</button>
+            </form>
+
+            {
+                <div className='comments'>
+                    <ul>
+                        {
+                            videoInfo.map(el => {
+                                return (
+                                    <li>
+                                        <p className='username'>{el.name}</p>
+                                        <p className='comment'>{el.comment}</p>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+
+            }
+        </div>
+    )
 }
 
 export default VideoPage
